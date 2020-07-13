@@ -1,4 +1,6 @@
 # simplespc
+[![Build Status](https://travis-ci.org/griverorz/simplespc.svg?branch=master)](https://travis-ci.org/griverorz/simplespc)
+[![codecov](https://codecov.io/gh/griverorz/simplespc/branch/master/graph/badge.svg)](https://codecov.io/gh/griverorz/simplespc)
 
 ## Overview
 
