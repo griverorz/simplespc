@@ -3,6 +3,12 @@
 .Rapp.history
 *credentials*
 
+# Tags
+TAGS
+
+# Personal test file
+run.R
+
 # Session Data files
 .RData
 
