@@ -3,13 +3,12 @@ Title: Lightweight SPC modeling
 Version: 0.0.1
 Author@R: person("Gonzalo", "Rivero", email="me@griverorz.net", role=c("aut", "cre"))
 Maintainer@R: person("Gonzalo", "Rivero", email="me@griverorz.net", role=c("aut", "cre"))
-Description: A lightweight implementation of basic statistical process
-control charts using S4 classes.
+Description: A lightweight implementation of basic statistical process control charts using S4 classes.
 Depends:
     R(>= 3.3.0),
 Suggests:
     testthat
-License: Proprietary
+License: GPL-2
 LazyData: true
 Imports:
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1
