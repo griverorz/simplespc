@@ -30,17 +30,3 @@ runner <- function(x, howmany, outof, interval) {
 }
 
 
-#' Main entry point
-#'
-#' @param data A numeric vector or a matrix
-#' @param chart A string with the name of a chart
-#' @return A data frame of booleans
-#' @export
-simplespc <- function(data, chart) {
-    test <- build_zones(new(chart, data=data))
-    res <- data.frame("Rule1"=rule1(test),
-                      "Rule2"=rule2(test),
-                      "Rule3"=rule3(test),
-                      "Rule4"=rule4(test))
-    return(res)
-}

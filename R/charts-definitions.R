@@ -1,10 +1,27 @@
-#' Build zones
+#' The generic for \code{build_zones}
+#'
+#' This generic allows for the creation of different methods to
+#' generate the zones needed for each type of chart. Each chart is
+#' expected to provide a \code{build_zones} method that takes the
+#' \code{data} slot (see \code{spcchart}) and produces an instance of
+#' \code{SpcData}.
+#'
+#' @param object An instance of any chart inherited from \code{SpcChart}.
+#' @param ... Additional arguments for a chart.
+#' @return An instance of \code{SpcData}
+#' 
+#' @seealso \code{\link{spcchart}} and \code{\link{spcdata}} 
+#'
 #' @export
+#' @docType methods
+#' @rdname build_zones-methods
 setGeneric("build_zones", function(object, ...) standardGeneric("build_zones"))
 
 
-#' @rdname build_zones
-#' @export
+#' Build zones for the x-bar chart
+#' 
+#' @rdname build_zones-methods
+#' @aliases build_zones,ANY,ANY-method
 setMethod("build_zones",
           signature="xbarchart",
           function(object) {
@@ -24,14 +41,16 @@ setMethod("build_zones",
               new("SpcData",
                   data=object@data,
                   yhat=object@data,
-                  stats=mu,
-                  sd=sigma,
+                  statistics=mu,
+                  deviation=sigma,
                   zones=zones)
           })
 
 
-#' @rdname build_zones
-#' @export
+#' Build zones for the c chart
+#' 
+#' @rdname build_zones-methods
+#' @aliases build_zones,ANY,ANY-method
 setMethod("build_zones",
           signature="cchart",
           function(object) {
@@ -51,14 +70,16 @@ setMethod("build_zones",
               new("SpcData",
                   data=object@data,
                   yhat=object@data,
-                  stats=mu,
-                  sd=sigma,
+                  statistics=mu,
+                  deviation=sigma,
                   zones=zones)
           })
 
 
-#' @rdname build_zones
-#' @export
+#' Build zones for the p chart
+#' 
+#' @rdname build_zones-methods
+#' @aliases build_zones,ANY,ANY-method
 setMethod("build_zones",
           signature="pchart",
           function(object) {
@@ -80,7 +101,7 @@ setMethod("build_zones",
               new("SpcData",
                   data=object@data,
                   yhat=mu,
-                  stats=mu,
-                  sd=sigma,
+                  statistics=mu,
+                  deviation=sigma,
                   zones=zones)
           })

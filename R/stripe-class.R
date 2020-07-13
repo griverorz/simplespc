@@ -2,6 +2,7 @@
 #'
 #' @slot lower A numeric vector representing the lower bound of the stripe
 #' @slot upper A numeric vector representing the upper bound of the stripe
+#' @rdname stripe
 setClass("Stripe",
          slots=list(lower="numeric", upper="numeric"))
 
@@ -30,17 +31,28 @@ setValidity("Stripe",
 #'
 #' @param x A stripe
 #' @return An integer
+#' 
+#' @rdname stripe-methods
+#' @aliases length,ANY,ANY-method
+#' 
+#' @export
 #' @examples
 #' st <- stripe(c(1, 1), c(2, 2))
 #' length(st)
 setMethod("length", signature="Stripe", function(x) length(x@upper))
 
 
-#' Extend a stripe 
+#' Extend a stripe a number of times
 #'
 #' @param x A stripe
-#' @param times An integer giving the non-negative number of time to extend the stripe
-#' @return A stripe extende \code{times}
+#' @param times An integer giving the non-negative number of times to
+#'     extend the stripe
+#' @return A stripe extended \code{times} times
+#'
+#' @rdname stripe-methods
+#' @aliases rep,ANY,ANY-method
+
+#' @export
 #' @examples
 #' st <- stripe(c(1, 1), c(2, 2))
 #' rep(st, 2)
@@ -52,11 +64,17 @@ setMethod("rep",
           })
 
 
-#' Instantiate an \code{stripe} object
+#' Instantiate an \code{Stripe} object
+#'
+#' This function creates a new instance of \code{Stripe} which is
+#' defined by lower and upper bounds
 #'
 #' @param lower A numeric vector 
-#' @param upper A numeric vector 
+#' @param upper A numeric vector
+#' 
 #' @export
+#' @rdname stripe
+#' 
 #' @examples
 #' stripe(c(1, 1), c(2, 2)) 
 stripe <- function(lower=-Inf, upper=Inf) {
@@ -74,12 +92,15 @@ stripe <- function(lower=-Inf, upper=Inf) {
 #'     the first element will be interpreted as the comparison to be
 #'     applied to the lower bound.
 #' @return A boolean vector with value TRUE is
-#' @rdname belongs
 #' @export
+#' 
+#' @rdname belongs-methods
+#' @aliases belongs,ANY,ANY-method
 setGeneric("belongs", function(x, y, ...) standardGeneric("belongs"))
 
 
-#' @rdname belongs
+#' @rdname belongs-methods
+#' @aliases belongs,ANY,ANY-method
 setMethod("belongs",
           signature=c("numeric", "Stripe"),
           function(x, y, strict=FALSE) {
@@ -103,11 +124,10 @@ setMethod("belongs",
           })
 
 
-#' @rdname belongs
+#' @rdname belongs-methods
+#' @aliases belongs,ANY,ANY-method
 setMethod("belongs",
           signature=c("Stripe", "Stripe"),
           function(x, y, strict=TRUE) {
               return(belongs(x@upper, y) & belongs(x@lower, y))
           })
-
-
