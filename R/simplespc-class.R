@@ -25,12 +25,13 @@ simplespc <- function(data,
                       chart,
                       ruleset="WE",
                       rules=1:4) {
-    if (is.null(ruleset) | ruleset == "") {
-        res <- build_zones(new(chart, data=data))
+    if (is.null(ruleset) || ruleset == "") {
+        zones <- build_zones(new(chart, data=data))
+        return(zones)
     } else {
         if (!inherits(data, "SpcData")) {
             data <- build_zones(new(chart, data=data))
-        } else if (!is.null(chart) | chart != "") {
+        } else if (!is.null(chart) || chart != "") {
             warning("chart will be ignored")
         }
         if (ruleset == "WE") {
