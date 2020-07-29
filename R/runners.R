@@ -75,7 +75,7 @@ zigzag <- function(x) {
     evens <- test[1:length(test) %% 2 == 1]
     if  (all.equal(length(unique(odds)),
                    length(unique(evens)),
-                   1)) {
+                   1) & all(test != 0)) {
         if (!identical(odds, evens)) {
             res <- TRUE
         }
