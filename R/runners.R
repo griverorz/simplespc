@@ -96,7 +96,7 @@ zigzag <- function(x) {
 monotone <- function(x) {
     res <- FALSE
     test <- sign(diff(x))
-    if (all(test > 0)) {
+    if (all(test > 0) | all(test < 0)) {
         res <- TRUE
     }
     return(res)    
