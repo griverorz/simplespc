@@ -1,4 +1,4 @@
-#' Union between numeric and matrix
+# Union between numeric and matrix
 setClassUnion("NumericOrMatrix", c("numeric", "matrix"))
 
 
@@ -12,6 +12,7 @@ setClassUnion("NumericOrMatrix", c("numeric", "matrix"))
 #' 
 #' @slot data An instance of numeric or matrix
 #' @rdname spcchart
+#' @include zone-class.R
 setClass(Class="SpcChart",
          slots=list(data="NumericOrMatrix"),
          contains="VIRTUAL")
@@ -41,10 +42,10 @@ setClass(Class="pchart",
          contains="SpcChart")
 
 
-#' The input data for p charts is validated to ensure that the input
-#' matrix contains two columns and that the second column can
-#' reasonably represent the sample sizes from which the counts in the
-#' first column are extracted
+# The input data for p charts is validated to ensure that the input
+# matrix contains two columns and that the second column can
+# reasonably represent the sample sizes from which the counts in the
+# first column are extracted
 setValidity("pchart",
             function(object) {
                 errors <- character()
@@ -87,9 +88,9 @@ setClass("SpcData",
                              "zones"="Zone"))
 
 
-#' The implementation of SPC needs to impose some constraints on the
-#' data. Currently, only the fact that the data does not contain
-#' missing values is verified.
+# The implementation of SPC needs to impose some constraints on the
+# data. Currently, only the fact that the data does not contain
+# missing values is verified.
 setValidity("SpcData",
             function(object) {
                 errors <- character()

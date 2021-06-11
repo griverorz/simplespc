@@ -1,3 +1,7 @@
+#' @include stripe-class.R
+NULL
+
+
 #' An S4 class to represent zones for SPC
 #'
 #' The core idea behind SPC is the definition of zones/regions around
@@ -6,13 +10,13 @@
 #' manually define each of those zones. The user is also expected to
 #' pass a centerline which is defined here as an instance of
 #' \code{Stripe} in which upper and lower bounds are equal.
-#' 
+#'
 #' @slot centerline A stripe containing the definition centerline
 #'     (lower and upper bounds are equal)
 #' @slot zoneA A stripe with the definition of zone A
 #' @slot zoneB A stripe with the definition of zone B
 #' @slot zoneC A stripe with the definition of zone C
-#' 
+
 #' @rdname zone
 setClass("Zone",
          slots=list(centerline="Stripe",
@@ -21,7 +25,7 @@ setClass("Zone",
                     zoneC="Stripe"))
 
 
-#' Validation for the Zone class
+# Validation for the Zone class
 setValidity("Zone",
             function(object) {
                 errors <- character()
@@ -43,8 +47,11 @@ setValidity("Zone",
 
 
 #' Getters for the zone class
-#' 
+#'
 #' @param object A zone
+#' @param region One of "0" (for the centerline), "A", "B", "C" to
+#'     retrieve the stripe correspoding to that zone
+#'
 #' @return A stripe
 #' @rdname setters-getters
 NULL
@@ -52,18 +59,24 @@ NULL
 
 #' The generic to get each zone from a \code{Zone} object
 #'
-#' A getter to retrieve the zone from a \code{Zone} object
-#'
 #' @param object An instance of \code{Zone}
 #' @param region One of "0" (for the centerline), "A", "B", "C" to
 #'     retrieve the stripe correspoding to that zone
 #'
 #' @export
-#' @docType methods
 #' @rdname setters-getters
 setGeneric("zone", function(object, region,...) standardGeneric("zone"))
 
 
+#' Zone constructor
+#'
+#' A constructor for the zone class
+#'
+#' @param object A zone
+#' @param region A region
+#' @return A zone
+#' 
+#' @export
 #' @rdname setters-getters
 setMethod("zone", signature="Zone",
           function(object, region, ...) {
@@ -75,12 +88,23 @@ setMethod("zone", signature="Zone",
 #' Setters for the zone class
 #'
 #' @param object A zone
-#' @param value A stripe 
+#' @param value A stripe
+#' 
 #' @return A stripe
 #' @name setters-getters
 NULL
 
 
+#' The generic to set a zone f
+#'
+#' A setter to  edit \code{Zone} object
+#'
+#' @param object An instance of \code{Zone}
+#' @param region One of "0" (for the centerline), "A", "B", "C" to
+#'     retrieve the stripe correspoding to that zone
+#'
+#' @export
+#' @rdname setters-getters
 setGeneric("zone<-", function(object, region, ...) standardGeneric("zone<-"))
 
 
@@ -94,7 +118,6 @@ setGeneric("zone<-", function(object, region, ...) standardGeneric("zone<-"))
 #' @param value An instance of \code{Stripe}
 #'
 #' @export
-#' @docType methods
 #' @rdname setters-getters
 setReplaceMethod("zone", signature="Zone", function(object, region, value, ...) {
     region <- ifelse(region == "0", "centerline", paste0("zone", region))

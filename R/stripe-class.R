@@ -7,7 +7,7 @@ setClass("Stripe",
          slots=list(lower="numeric", upper="numeric"))
 
 
-#' Validator for the class Stripe
+# Validator for the class Stripe
 setValidity("Stripe",
             function(object) {
                 errors <- character()

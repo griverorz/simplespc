@@ -6,7 +6,7 @@
 #' than returning the anomalies to some given input data, it only
 #' calculates the information necessary (an instance of
 #' \code{SpcData}) that can be used to evaluate other input data.
-#' 
+#'
 #' @param data Either a numeric vector/matrix or an instance of
 #'     \code{SpcData}
 #' @param chart A string with the name of a chart. The chart is
@@ -19,7 +19,8 @@
 #' @return An instance of \code{SimpleSpc} that contains both the
 #'     input data as well as a matrix of booleans indicating the
 #'     anomalies corresponding to each rule.
-#' 
+#' @include zone-class.R
+#'
 #' @export
 simplespc <- function(data,
                       chart,
@@ -52,7 +53,7 @@ setClass("SimpleSpc",
                              anomalies="data.frame"))
 
 
-#' Validates a SimpleSpc instance
+# Validates a SimpleSpc instance
 setValidity("SimpleSpc",
             function(object) {
                 errors <- character()

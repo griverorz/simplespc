@@ -8,6 +8,7 @@
 \alias{build_zones,cchart-method}
 \alias{build_zones,pchart-method}
 \alias{western_electric}
+\alias{nelson}
 \title{The generic for \code{build_zones}}
 \usage{
 build_zones(object, ...)
@@ -19,6 +20,8 @@ build_zones(object, ...)
 \S4method{build_zones}{pchart}(object)
 
 western_electric(object, rule = 1:4, ...)
+
+nelson(object, rule = 1:8, ...)
 }
 \arguments{
 \item{object}{An instance of \code{SpcData}}
@@ -26,10 +29,14 @@ western_electric(object, rule = 1:4, ...)
 \item{...}{Additional parameters. Currently not implemented}
 
 \item{rule}{A vector of integers indicating the rule to be applied
-to the data. It defaults to rules 1 to 4.}
+to the data. It defaults to rules 1 to 8.}
 }
 \value{
 An instance of \code{SpcData}
+
+A data.frame of booleans with as many rows as data points
+    in \code{data} and as many columns as rules specified in
+    \code{rule}.
 
 A data.frame of booleans with as many rows as data points
     in \code{data} and as many columns as rules specified in
@@ -43,6 +50,8 @@ expected to provide a \code{build_zones} method that takes the
 \code{SpcData}.
 
 This generic applies the Western Electric rules to \code{SpcData}
+
+This generic applies the Nelson rules to \code{SpcData}
 }
 \seealso{
 \code{\link{spcchart}} and \code{\link{spcdata}}

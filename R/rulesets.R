@@ -17,6 +17,8 @@ setGeneric("western_electric", function(object, rule=1:4, ...)
     standardGeneric("western_electric"))
 
 
+#' Methods for Western Electric ruleset
+#' 
 #' @rdname western_electric-methods
 #' @aliases western_electric,ANY,ANY-method
 setMethod("western_electric",
@@ -71,6 +73,8 @@ setGeneric("nelson", function(object, rule=1:8, ...)
     standardGeneric("nelson"))
 
 
+#' Methods for Western Electric ruleset
+#' 
 #' @rdname nelson-methods
 #' @aliases nelson,ANY,ANY-method
 setMethod("nelson",

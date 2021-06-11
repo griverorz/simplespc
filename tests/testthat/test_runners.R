@@ -47,7 +47,8 @@ test_that("outside() detects vectors outside a stripe (on different sides)", {
 test_that("chunkify applies runners", {
     expect_equal(chunkify(c(1, 0, 1, 0), zigzag, 4), c(FALSE, FALSE, FALSE, TRUE))
     expect_equal(chunkify(c(1, 0, 1, 1), zigzag, 3), c(FALSE, FALSE, TRUE, FALSE))
-    
-    expect_equal(chunkify(c(2, 2, 2), function(x) outside(x, 3, stripe(0, 1)), 3), c(FALSE, FALSE, TRUE))
-    expect_equal(chunkify(c(2, 2, 2), function(x) outside(x, 3, stripe(0, 1)), 4), c(FALSE, FALSE, TRUE))
+
+    lambda <- function(x) outside(x, 3, stripe(0, 1))
+    expect_equal(chunkify(c(2, 2, 2), lambda, 3), c(FALSE, FALSE, TRUE))
+    expect_equal(chunkify(c(2, 2, 2), lambda, 4), c(FALSE, FALSE, FALSE))
 })
