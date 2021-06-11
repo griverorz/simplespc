@@ -5,7 +5,7 @@ test_that("zigzag() detects oscillating patterns", {
     expect_equal(zigzag(c(0, 0, 0)), FALSE)
     expect_equal(zigzag(c(0, 1, 1)), FALSE)
     expect_equal(zigzag(c(-1, 1)), TRUE)
-    expect_equal(zigzag(c(-1, NA)), TRUE)    
+    expect_error(zigzag(c(-1, NA)))    
     expect_equal(zigzag(-1), FALSE)
 })
 
@@ -14,7 +14,7 @@ test_that("monotone() detects strictly increasing/decreasing patterns", {
     expect_equal(monotone(c(2, 1, 0)), TRUE)
     expect_equal(monotone(c(0, 1, 1)), FALSE)
     expect_equal(monotone(c(0, 1, 0)), FALSE)
-    expect_equal(monotone(c(0, 1, NA)), FALSE)    
+    expect_error(monotone(c(0, 1, NA)))
 })
 
 test_that("inside() detects vectors inside a stripe", {

@@ -69,6 +69,9 @@ inside <- function(x, howmany, interval) {
 #' @examples
 #' zigzag(c(1, 0, 1, 0))
 zigzag <- function(x) {
+    if (any(is.na(x))) {
+        stop("Input data should not contain missing values")
+    }
     res <- FALSE
     test <- sign(diff(x))
     odds <- test[1:length(test) %% 2 == 0]
@@ -94,12 +97,15 @@ zigzag <- function(x) {
 #' monotone(c(1, 2, 3))
 #' monotone(c(3, 2, 1))
 monotone <- function(x) {
+    if (any(is.na(x))) {
+        stop("Input data should not contain missing values")
+    }
     res <- FALSE
     test <- sign(diff(x))
     if (all(test > 0) | all(test < 0)) {
         res <- TRUE
     }
-    return(res)    
+    return(res)
 }
 
 
