@@ -104,7 +104,7 @@ NULL
 #'
 #' @export
 #' @rdname setters-getters
-setGeneric("zone<-", function(object, region, ...) standardGeneric("zone<-"))
+setGeneric("zone<-", function(object, value, ...) standardGeneric("zone<-"))
 
 
 #' The generic to set the value of each zone in a \code{Zone} object
