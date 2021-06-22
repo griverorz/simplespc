@@ -1,6 +1,13 @@
 #' The generic for \code{build_zones}
 #'
-#' This generic allows for the creation of different methods to
+#' @docType methods
+#' @rdname build_zones-methods
+setGeneric("build_zones", function(object, ...) standardGeneric("build_zones"))
+
+
+#' Build zones for the x-bar chart
+#' 
+#' This function allows for the creation of different methods to
 #' generate the zones needed for each type of chart. Each chart is
 #' expected to provide a \code{build_zones} method that takes the
 #' \code{data} slot (see \code{spcchart}) and produces an instance of
@@ -10,16 +17,7 @@
 #' @param ... Additional arguments for a chart.
 #' @return An instance of \code{SpcData}
 #' 
-#' @seealso \code{\link{spcchart}} and \code{\link{spcdata}} 
-#'
 #' @export
-#' @docType methods
-#' @rdname build_zones-methods
-setGeneric("build_zones", function(object, ...) standardGeneric("build_zones"))
-
-
-#' Build zones for the x-bar chart
-#' 
 #' @rdname build_zones-methods
 #' @aliases build_zones,ANY,ANY-method
 setMethod("build_zones",
@@ -27,7 +25,7 @@ setMethod("build_zones",
           function(object) {
               n <- length(object@data)
               mu <- mean(object@data)
-              sigma <- sd(object@data)
+              sigma <- stats::sd(object@data)
               
               zones <- new("Zone",
                            zoneA=rep(stripe(mu - 3 * sigma,
@@ -48,7 +46,11 @@ setMethod("build_zones",
 
 
 #' Build zones for the c chart
-#' 
+#'
+#' @param object An instance of any chart inherited from \code{SpcChart}.
+#' @param ... Additional arguments for a chart.
+#' @return An instance of \code{SpcData}
+
 #' @rdname build_zones-methods
 #' @aliases build_zones,ANY,ANY-method
 setMethod("build_zones",
@@ -77,6 +79,10 @@ setMethod("build_zones",
 
 
 #' Build zones for the p chart
+#'
+#' @param object An instance of any chart inherited from \code{SpcChart}.
+#' @param ... Additional arguments for a chart.
+#' @return An instance of \code{SpcData}
 #' 
 #' @rdname build_zones-methods
 #' @aliases build_zones,ANY,ANY-method

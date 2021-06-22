@@ -91,6 +91,7 @@ stripe <- function(lower=-Inf, upper=Inf) {
 #'     indicates weak inequality. If a vector of length two is passed,
 #'     the first element will be interpreted as the comparison to be
 #'     applied to the lower bound.
+#' @param ... Additional arguments. Not implemented.
 #' @return A boolean vector with value TRUE is
 #' @export
 #' 

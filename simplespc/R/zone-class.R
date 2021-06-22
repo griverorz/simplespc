@@ -52,31 +52,28 @@ setValidity("Zone",
 #'     retrieve the stripe correspoding to that zone
 #'
 #' @return A stripe
-#' @rdname setters-getters
+#' @rdname getters
 NULL
 
 
 #' The generic to get each zone from a \code{Zone} object
 #'
-#' @param object An instance of \code{Zone}
-#' @param region One of "0" (for the centerline), "A", "B", "C" to
-#'     retrieve the stripe correspoding to that zone
-#'
-#' @export
-#' @rdname setters-getters
-setGeneric("zone", function(object, region,...) standardGeneric("zone"))
+#' @rdname getters
+setGeneric("zone", function(object, region, ...) standardGeneric("zone"))
 
 
 #' Zone constructor
 #'
 #' A constructor for the zone class
 #'
-#' @param object A zone
-#' @param region A region
+#' @param object An instance of \code{Zone}
+#' @param region One of "0" (for the centerline), "A", "B", "C" to
+#'     retrieve the stripe correspoding to that zone
+#' @param ... Additional arguments. Not implemented.
 #' @return A zone
 #' 
 #' @export
-#' @rdname setters-getters
+#' @rdname getters
 setMethod("zone", signature="Zone",
           function(object, region, ...) {
               region <- ifelse(region == "0", "centerline",  paste0("zone", region))
@@ -86,41 +83,52 @@ setMethod("zone", signature="Zone",
 
 #' Setters for the zone class
 #'
-#' @param object A zone
-#' @param value A stripe
-#' 
-#' @return A stripe
-#' @name setters-getters
+#' @name setters
 NULL
 
-
-#' The generic to set a zone f
+#' Setter for the zone
 #'
-#' A setter to  edit \code{Zone} object
-#'
-#' @param object An instance of \code{Zone}
-#' @param region One of "0" (for the centerline), "A", "B", "C" to
-#'     retrieve the stripe correspoding to that zone
-#'
-#' @export
-#' @rdname setters-getters
-setGeneric("zone<-", function(object, value, ...) standardGeneric("zone<-"))
+#' @rdname setters
+setGeneric("zone<-", function(object, value) standardGeneric("zone<-"))
 
 
-#' The generic to set the value of each zone in a \code{Zone} object
+#' Set the value of a zone in a \code{Zone} object
 #'
 #' A setter to change the value of the zone in a \code{Zone} object
 #'
 #' @param object An instance of \code{Zone}
-#' @param region One of "0" (for the centerline), "A", "B", "C" to
-#'     retrieve the stripe correspoding to that zone
-#' @param value An instance of \code{Stripe}
+#' @param value An instance of \code{Zone}
 #'
 #' @export
-#' @rdname setters-getters
-setReplaceMethod("zone", signature="Zone", function(object, region, value, ...) {
+#' @rdname setters
+setReplaceMethod("zone", signature="Zone", function(object, value) {
+    object <- value
+    if (validObject(object)) {
+        return(object)
+    }
+})
+
+#' Edits slot in a zone
+#'
+#' @rdname zone-setters
+setGeneric("set_zone", function(object, region, value) standardGeneric("set_zone"))
+
+
+#' Sets a specific zone in a \code{Zone} object
+#'
+#' Updates the value of a given zone in a Zone object
+#' 
+#' @param object A Zone object
+#' @param region One of "0" (for the centerline), "A", "B", "C" to
+#'     retrieve the stripe correspoding to that zone
+#' @param value A \code{Stripe} with the new value for the region
+#' 
+#' @export
+#' @rdname zone-setters
+setMethod("set_zone", signature="Zone", function(object, region, value) {
     region <- ifelse(region == "0", "centerline", paste0("zone", region))
     slot(object, region) <- value
+    
     if (validObject(object)) {
         return(object)
     }

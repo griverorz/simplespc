@@ -11,7 +11,7 @@
 #'     \code{SpcData}
 #' @param chart A string with the name of a chart. The chart is
 #'     expected to exist as a class inheriting from \code{SpcChart}.
-#'     See \code{\link{spcchart}}.
+#'     See \code{spcchart}.
 #' @param ruleset A string with the name of a given ruleset. Currently
 #'     only "WE" (for "Western Electric") is implemented.
 #' @param rules An integer vector with the rules to be calculated. It
@@ -70,6 +70,11 @@ setValidity("SimpleSpc",
 
 
 #' Show method for SimpleSpc
+#'
+#' @param object An instance of \code{SimpleSpc}
+#' @return A string with the number of anomalies
+#' 
+#' @export
 setMethod("show",
           signature="SimpleSpc",
           function(object) cat(sprintf("Detected %s anomalies",

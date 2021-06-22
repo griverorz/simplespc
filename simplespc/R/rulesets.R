@@ -2,6 +2,14 @@
 #'
 #' This generic applies the Western Electric rules to \code{SpcData}
 #'
+#' @docType methods
+#' @rdname western_electric-methods
+setGeneric("western_electric", function(object, rule=1:4, ...)
+    standardGeneric("western_electric"))
+
+
+#' Methods for Western Electric ruleset
+#' 
 #' @param object An instance of \code{SpcData}
 #' @param rule A vector of integers indicating the rule to be applied
 #'     to the data. It defaults to rules 1 to 4.
@@ -11,18 +19,10 @@
 #'     \code{rule}.
 #' 
 #' @export
-#' @docType methods
-#' @rdname build_zones-methods
-setGeneric("western_electric", function(object, rule=1:4, ...)
-    standardGeneric("western_electric"))
-
-
-#' Methods for Western Electric ruleset
-#' 
 #' @rdname western_electric-methods
 #' @aliases western_electric,ANY,ANY-method
 setMethod("western_electric",
-          signature="SpcData", 
+          signature="SpcData",
           function(object, rule, ...) {
               res <- list()
               for (i in rule) {
@@ -58,6 +58,14 @@ setMethod("western_electric",
 #'
 #' This generic applies the Nelson rules to \code{SpcData}
 #'
+#' @docType methods
+#' @rdname nelson-methods
+setGeneric("nelson", function(object, rule=1:8, ...)
+    standardGeneric("nelson"))
+
+
+#' Methods for Western Electric ruleset
+#' 
 #' @param object An instance of \code{SpcData}
 #' @param rule A vector of integers indicating the rule to be applied
 #'     to the data. It defaults to rules 1 to 8.
@@ -67,14 +75,6 @@ setMethod("western_electric",
 #'     \code{rule}.
 #' 
 #' @export
-#' @docType methods
-#' @rdname build_zones-methods
-setGeneric("nelson", function(object, rule=1:8, ...)
-    standardGeneric("nelson"))
-
-
-#' Methods for Western Electric ruleset
-#' 
 #' @rdname nelson-methods
 #' @aliases nelson,ANY,ANY-method
 setMethod("nelson",
@@ -125,6 +125,3 @@ setMethod("nelson",
               res <- as.data.frame(do.call(cbind, res))
               return(res)
           })
-          
-          
-          
