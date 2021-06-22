@@ -1,6 +1,6 @@
 Package: simplespc
 Title: Lightweight SPC modeling
-Version: 0.0.1
+Version: 0.0.2
 Author: Gonzalo Rivero <me@griverorz.net> [aut, cre]
 Maintainer: Gonzalo Rivero <me@griverorz.net>
 Description: A lightweight implementation of basic statistical process control charts using S4 classes.
