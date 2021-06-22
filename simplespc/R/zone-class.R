@@ -16,7 +16,6 @@ NULL
 #' @slot zoneA A stripe with the definition of zone A
 #' @slot zoneB A stripe with the definition of zone B
 #' @slot zoneC A stripe with the definition of zone C
-
 #' @rdname zone
 setClass("Zone",
          slots=list(centerline="Stripe",
